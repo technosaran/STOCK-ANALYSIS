@@ -1,0 +1,48 @@
+[project]
+name = "quantedge-backend"
+version = "0.1.0"
+description = "QuantEdge - AI Powered Algorithmic Trading and Backtesting Platform backend"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "sqlalchemy>=2.0.0",
+  "pydantic>=2.8.0",
+  "pydantic-settings>=2.4.0",
+  "passlib[bcrypt]>=1.7.4",
+  "python-jose[cryptography]>=3.3.0",
+  "email-validator>=2.2.0",
+  "httpx>=0.27.0",
+  "redis>=5.0.0",
+  "yfinance>=0.2.52",
+  "numpy>=2.0.0",
+  "pandas>=2.2.0",
+  "scikit-learn>=1.5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+  "pytest-cov>=5.0.0",
+  "ruff>=0.5.0",
+  "mypy>=1.11.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=app --cov-report=term-missing"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["app", "tests"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+mypy_path = "app"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
